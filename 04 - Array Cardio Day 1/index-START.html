@@ -34,31 +34,73 @@
       'Berne, Eric', 'Berra, Yogi', 'Berry, Wendell', 'Bevan, Aneurin', 'Ben-Gurion, David', 'Bevel, Ken', 'Biden, Joseph', 'Bennington, Chester', 'Bierce, Ambrose',
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
-    
+
     // Array.prototype.filter()
-    // 1. Filter the list of inventors for those who were born in the 1500's
+    // 1. Filter the list of inventors for those who were born in the 1500s
+    function filterByBirthCentury(array, century) {
+      return array.filter(person => person.year.toString().slice(0,2) === century.toString())
+    }
+    console.table(filterByBirthCentury(inventors, 15))
 
     // Array.prototype.map()
-    // 2. Give us an array of the inventors first and last names
+    // 2. Give us an array of the inventors' first and last names
+    function getFullNames(array) {
+      return array.map(person => `${person.first} ${person.last}`)
+    }
+    console.log(getFullNames(inventors))
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    function sortByBirthdate(array) {
+      return array.sort((a, b) => a.year - b.year)
+    }
+    console.table(sortByBirthdate(inventors))
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    function getCombinedYearsLived(array) {
+      return array.reduce((total, inventor) => {
+        return total + inventor.passed - inventor.year
+      }, 0)
+    }
+    console.log("Combined Years Lived:", getCombinedYearsLived(inventors))
 
     // 5. Sort the inventors by years lived
+    function sortByYearsLived(array) {
+      return array.sort((a, b) => (b.passed - b.year) - (a.passed - a.year))
+    }
+    console.table(sortByYearsLived(inventors))
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+    function getBoulevardsWithDe() {
+      const category = document.querySelector('.mw-category')
+      const regex = / des? /
+      const deBoulevards = [...category.querySelectorAll('a')].map(boulevard => boulevard.textContent).filter(boulevard => boulevard.match(regex))
+      console.table(deBoulevards)
+    }
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    function sortByLastName(array) {
+      return array.sort().map(person => `${person.slice(person.indexOf(',') + 2)} ${person.slice(0, person.indexOf(','))}`)
+    }
+    console.table(sortByLastName(people))
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    function sumUpInstances(array) {
+      return array.reduce((totals, word) => {
+        if (totals[word]) {
+          totals[word]++
+        } else {
+          totals[word] = 1
+        }
+        return totals
+      }, {})
+    }
+    console.log("Totals:", sumUpInstances(data))
 
   </script>
 </body>
