@@ -19,23 +19,12 @@ body {
 }
 
 .player {
-  max-width: 750px;
+  max-width: 640px;
   border: 5px solid rgba(0,0,0,0.2);
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
   position: relative;
   font-size: 0;
   overflow: hidden;
-}
-
-/* This css is only applied when fullscreen is active. */
-.player:fullscreen {
-  max-width: none;
-  width: 100%;
-}
-
-.player:-webkit-full-screen {
-  max-width: none;
-  width: 100%;
 }
 
 .player__video {
@@ -105,7 +94,6 @@ body {
 }
 
 /* unholy css to style input type="range" */
-
 input[type=range] {
   -webkit-appearance: none;
   background: transparent;
@@ -159,4 +147,10 @@ input[type=range]::-moz-range-thumb {
   border-radius: 50px;
   background: #ffc600;
   cursor: pointer;
+}
+
+/* This css is only applied when fullscreen is active. */
+.player:fullscreen, .player:-webkit-full-screen {
+  max-width: none;
+  width: 100%;
 }
