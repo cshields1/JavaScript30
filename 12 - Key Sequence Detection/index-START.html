@@ -6,7 +6,17 @@
   <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
 </head>
 <body>
-<script>
-</script>
+  <script>
+    const array = [];
+    const passcode = 'craig'
+    window.addEventListener('keyup', (e) => {
+      array.push(e.key)
+      array.splice(-passcode.length - 1, array.length - passcode.length)
+      if (array.join('').includes(passcode)) {
+        console.log('CORRECT PASSCODE')
+        cornify_add();
+      }
+    })
+  </script>
 </body>
 </html>
