@@ -67,15 +67,33 @@ h2 {
 }
 
 .plates input:checked + label:before {
-  content: "🌮";
+  content: "✅";
 }
 
 .add-items {
   margin-top: 20px;
 }
 
-.add-items input {
+.add-items input, button {
   padding: 10px;
   outline: 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.add-items button {
+  margin-top: 1rem;
+  border: 2px solid rgba(0,0,0,0.1);
+}
+
+.green {
+  background-color: rgb(138, 240, 138);
+}
+
+.white {
+  background-color: white;
+}
+
+.red {
+  background-color: rgb(252, 123, 123);
 }
