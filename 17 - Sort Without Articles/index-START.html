@@ -5,7 +5,6 @@
   <title>Sort Without Articles</title>
 </head>
 <body>
-
   <style>
     body {
       margin: 0;
@@ -26,12 +25,12 @@
       padding: 0;
       box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
     }
-    
+
     #bands li {
       border-bottom: 1px solid #efefef;
       padding: 20px;
     }
-    
+
     #bands li:last-child {
       border-bottom: 0;
     }
@@ -40,16 +39,17 @@
       color: #ffc600;
       text-decoration: none;
     }
-
   </style>
 
   <ul id="bands"></ul>
 
-<script>
-const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+  <script>
+    const bands = ['The Plot in You', 'The Devil Wears Prada', 'Norma Jean', 'Say Anything', 'The Midway State', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'An Old Dog', 'Giraffes? Giraffes!', "The Hu", 'Animals As Leaders', 'The White Stripes'];
+    const trimArticle = band => band.replace(/^(a |the |an )/i, '').trim()
+    bands.sort((a,b) => trimArticle(a) > trimArticle(b) ? 1 : -1)
 
-
-</script>
-
+    const list = document.querySelector('#bands');
+    list.innerHTML = bands.map(band => `<li>${band}</li>`).join('')
+  </script>
 </body>
 </html>
