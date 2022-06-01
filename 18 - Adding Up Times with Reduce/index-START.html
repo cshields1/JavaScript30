@@ -181,7 +181,42 @@
       Video 58
     </li>
   </ul>
-<script>
-</script>
+  <script>
+    /*
+    const minutes = [];
+    const seconds = [];
+    const times = document.querySelectorAll('[data-time]')
+    times.forEach(time => {
+      const stamp = time.dataset.time
+      const divider = stamp.indexOf(':')
+      minutes.push(+stamp.slice(0, divider))
+      seconds.push(+stamp.slice(divider + 1))
+    })
+    const allMinutes = minutes.reduce((total, current) => total + current, 0)
+    const allSeconds = seconds.reduce((total, current) => total + current, 0)
+    console.log(allMinutes, allSeconds)
+    const finalSeconds = allSeconds % 60
+    const finalMinutes = (allSeconds - allSeconds % 60 + allMinutes % 60) % 60
+    const finalHours = (allMinutes - allMinutes % 60) / 60
+    console.log(`${finalHours}:${finalMinutes}:${finalSeconds}`)
+    */
+
+    const timeNodes = Array.from(document.querySelectorAll('[data-time]'))
+    const seconds = timeNodes
+      .map(node => node.dataset.time)
+      .map(timeCode => {
+        const [minutes, seconds] = timeCode.split(':').map(parseFloat);
+        return (minutes * 60) + seconds
+      })
+      .reduce((total, seconds) => total + seconds)
+
+    let secondsLeft = seconds;
+    const hours = Math.floor(secondsLeft / 3600);
+    secondsLeft = secondsLeft % 3600;
+    const minutes = Math.floor(secondsLeft / 60);
+    secondsLeft = secondsLeft % 60;
+    const totalTime = `${hours}:${minutes}:${secondsLeft}`
+    console.log(totalTime)
+  </script>
 </body>
 </html>
