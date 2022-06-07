@@ -5,6 +5,32 @@
   <title>Understanding JavaScript's Capture</title>
 </head>
 <body class="bod">
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    div {
+      width: 100%;
+      padding: 100px;
+    }
+
+    .one {
+      background: thistle;
+    }
+
+    .two {
+      background: mistyrose;
+    }
+
+    .three {
+      background: coral;
+    }
+  </style>
 
   <div class="one">
     <div class="two">
@@ -13,36 +39,19 @@
     </div>
   </div>
 
-<style>
-  html {
-    box-sizing: border-box;
-  }
-  
-  *, *:before, *:after { 
-    box-sizing: inherit; 
-  }
+  <button>Click Me Once</button>
 
-  div {
-    width: 100%;
-    padding: 100px;
-  }
+  <script>
+    const divs = document.querySelectorAll('div');
+    const button = document.querySelector('button');
 
-  .one {
-    background: thistle;
-  }
+    divs.forEach(div => div.addEventListener('click', logText, { capture: false, once: true }))
+    button.addEventListener('click', logText, { once: true })
 
-  .two {
-    background: mistyrose;
-  }
-
-  .three {
-    background: coral;
-  }
-</style>
-
-<button></button>
-<script>
-
-</script>
+    function logText(e) {
+      console.log(this.classList.value);
+      // e.stopPropagation();
+    }
+  </script>
 </body>
 </html>
